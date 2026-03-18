@@ -9,6 +9,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.fragmentContainerView, DieFragment.newInstance(6))
+                .add(R.id.fragmentContainerView2, DieFragment.newInstance(6))
+                .commit()
+            supportFragmentManager.executePendingTransactions()
+        }
+
         val dieFragment1 = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as DieFragment
         val dieFragment2 = supportFragmentManager.findFragmentById(R.id.fragmentContainerView2) as DieFragment
 
